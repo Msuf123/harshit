@@ -21,12 +21,15 @@ export default function ClassRoomNumber(){
         <div className={style.main}>
             <div className={style.flexs}>
                     <button onClick={()=>{
+                    
                     if(currentSeat[index+1]===undefined){
                         setTimeout(()=>{setError(false)},3000)
 
                         setError(true)
                     }
                     else{
+                        dispatch(getSeats({url:`${url}setSeat/classRowSeat`,roomNumber:currentSeat[index+1]}))
+                        dispatch(getRows({url:`${url}setSeat/classRowNumber`,roomNumber:currentSeat[index+1]}))
                     dispatch(changeIndex(index+1))
                     setIndex((number)=>number+1)
                     }
@@ -38,6 +41,8 @@ export default function ClassRoomNumber(){
                         setError(true)
                     }
                     else{
+                        dispatch(getSeats({url:`${url}setSeat/classRowSeat`,roomNumber:currentSeat[index-1]}))
+                        dispatch(getRows({url:`${url}setSeat/classRowNumber`,roomNumber:currentSeat[index-1]}))
                     setIndex((number)=>number-1)
                     dispatch(changeIndex(index-1))
                     }

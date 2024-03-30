@@ -14,10 +14,7 @@ user:'admin',
 password:'admin@123',
 database:'harshit'
 })
-app.use((req,res,next)=>{
-    console.log('Incmoomng ')
-    next()
-})
+
 app.use(bodyParser.json())
 app.use(cros({origin:'http://localhost:3000',credentials:true}))
 
@@ -58,7 +55,9 @@ passport.use(new LocalStrategy((username,password,done)=>{
 app.post('/login',passport.authenticate('local'),(req,res,next)=>{
   res.send({success:true,role:req.user.isAdmin})
 })
-
+app.get('/studentRoom',(req,res,next)=>{
+   
+})
 app.use('/setSeat',setSeat)
 app.listen(3003,async ()=>{
     console.log('Server up and running ')

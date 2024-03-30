@@ -7,6 +7,7 @@ const setSeat=express.Router()
 setSeat.get('/seats',(req,res,next)=>{
 
 })
+
 setSeat.get('/classRoomNumbers',(req,res,next)=>{
     con.query('SELECT DISTINCT class FROM class;',(err,result)=>{
         if(err){
@@ -18,6 +19,18 @@ setSeat.get('/classRoomNumbers',(req,res,next)=>{
         }
     })
 })
+setSeat.post('/getUids',(req,res,next)=>{
+    console.log(req.body.roomNumber,'Hello this is te com number')
+    con.query('SELECT * FROM allocation WHERE roomno=?; ',[req.body.roomNumber],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.send({sucess:true,msg:result})
+        }
+    })
+})
+
 setSeat.post('/classRowNumber',(req,res,next)=>{
     
     
@@ -31,8 +44,50 @@ setSeat.post('/classRowNumber',(req,res,next)=>{
         }
     })
 })
-setSeat.post('/setRowSeat',(req,res,next)=>{
-
+setSeat.post('/allocationRoom',(req,res,next)=>{
+    console.log(req.body)
+    con.query('SELECT * FROM allocation WHERE roomno=?;',[req.body.class],(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            if(result.length===0){
+                res.send({success:true,msg:true})
+            }
+            else{
+                res.send({success:true,msg:false})
+            }
+        }
+    })
+})
+setSeat.post('/allocationDelete',(req,res,next)=>{
+    con.query('DELETE  FROM allocation WHERE roomno=?;',[req.body.class],(err,result)=>{
+        if(err){
+            console.log(err)
+            res.send({success:true,msg:false})
+        }
+        else{
+            
+                res.send({success:true,msg:true})
+            
+            
+        }
+    })
+})
+setSeat.post('/allocation',(req,res,next)=>{
+    const data=req.body.array
+    console.log('Inserting data')
+    data.map((a)=>{
+    con.query('INSERT INTO allocation (row,seatno,roomno,studentId) VALUES(?,?,?,?);',[a.row,a.seatno,a.roomno,a.studentId],(err,data)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(data)
+        }
+    })
+})
+res.send({success:true,msg:false})
 })
 setSeat.post('/searchStudent',(req,res,next)=>{
     const student=req.body.value

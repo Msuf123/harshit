@@ -11,6 +11,7 @@ import rowsSlice from './Routes/SetSeat/ClassRoomRows/rowsSlice';
 import ParticularSeatSlice from './Routes/SetSeat/ClassRoomRows/ParticularSeat/ParticularSeatSlice';
 import FirstColumnOfEachRow from './Routes/SetSeat/ClassRoomRows/ParticularSeat/InputSearch/FirstColumnOfEachRow';
 import IndexOfRoom from './Routes/SetSeat/ClassRoomNumber/IndexOfRoom';
+import Editable from './Editable/Editable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store=configureStore({reducer:
@@ -19,17 +20,18 @@ const store=configureStore({reducer:
   roomNumber:ClassRoomNumber,
   rows:rowsSlice,
   particularSeat:ParticularSeatSlice,
-  firstColorOfEachRow:FirstColumnOfEachRow
+  firstColorOfEachRow:FirstColumnOfEachRow,edit:Editable,
+  editable:Editable
   }
 
 
 })
 root.render(
-  <React.StrictMode>
+ 
     <Provider store={store}>
     <App />
     </Provider>
-  </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

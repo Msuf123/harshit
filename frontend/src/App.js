@@ -4,11 +4,13 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Root from './Routes/Root/Root';
 import Login from './Routes/Login/Login';
 import SetSeat from './Routes/SetSeat/SetSeat';
+import GetSeats from './Routes/GetSeat/GetSeat';
 
 function App() {
   const router=createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Root></Root>}>
       <Route index element={<Login></Login>}></Route>
+      <Route path='/getSeat' element={<GetSeats></GetSeats>}></Route>
       <Route path='/setSeat' element={<SetSeat></SetSeat>}></Route>
     </Route>
   ))
