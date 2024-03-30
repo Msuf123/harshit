@@ -1,0 +1,6 @@
+.rows{
+    border: 2px solid black;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-auto-flow: column;
+}

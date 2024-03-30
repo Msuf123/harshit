@@ -7,9 +7,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import url from './Routes/Login/urlSlice';
 import ClassRoomNumber from './Routes/SetSeat/ClassRoomNumber/classRoomNumberSlice';
+import rowsSlice from './Routes/SetSeat/ClassRoomRows/rowsSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store=configureStore({reducer:{url:url,roomNumber:ClassRoomNumber}})
+const store=configureStore({reducer:
+  {url:url,
+  roomNumber:ClassRoomNumber,
+  rows:rowsSlice
+  }
+
+
+})
 root.render(
   <React.StrictMode>
     <Provider store={store}>

@@ -1,0 +1,11 @@
+.main{
+    border: 2px solid rgb(139, 139, 139);
+    border-radius: 10px;
+    width: max-content;
+    padding: 5px;
+}
+.main span{
+    display: block;
+    min-height: 3px;
+    min-width: 30px;
+}

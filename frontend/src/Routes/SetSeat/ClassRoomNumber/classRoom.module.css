@@ -1,0 +1,18 @@
+.main{
+    
+    width: max-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexs span{
+    background-color: gainsboro;
+    font-size: 20px;
+    margin: 5px;
+    padding: 3px;
+    border-radius: 5px;
+    font-weight: 600;
+}
