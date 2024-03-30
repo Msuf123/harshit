@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import Root from './Routes/Root/Root';
+import Login from './Routes/Login/Login';
+import SetSeat from './Routes/SetSeat/SetSeat';
 
 function App() {
+  const router=createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<Root></Root>}>
+      <Route index element={<Login></Login>}></Route>
+      <Route path='/setSeat' element={<SetSeat></SetSeat>}></Route>
+    </Route>
+  ))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router}></RouterProvider>
   );
 }
 

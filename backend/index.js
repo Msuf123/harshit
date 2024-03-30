@@ -6,16 +6,20 @@ const session=require('express-session')
 const cros=require('cors')
 const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session)
-const passowrdFuncs=require('./encrypt/encrypt')
 const bodyParser=require('body-parser')
+const setSeat = require('./Routes/register')
 const sqlStore=new MySQLStore({
 host:'localhost',
 user:'admin',
 password:'admin@123',
 database:'harshit'
 })
+app.use((req,res,next)=>{
+    console.log('Incmoomng ')
+    next()
+})
 app.use(bodyParser.json())
-app.use(cros())
+app.use(cros({origin:'http://localhost:3000',credentials:true}))
 
 app.use(session({
     secret:'shhh',
@@ -25,8 +29,15 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+passport.serializeUser((user,done)=>{
+    done(null,user)
+})
+passport.deserializeUser((user,done)=>{
+    done(user,done)
+})
 passport.use(new LocalStrategy((username,password,done)=>{
-    con.query('SELECT * FROM student',(err,res)=>{
+    
+    con.query('SELECT * FROM student WHERE uid=?',[username],(err,res)=>{
         if(err){
             done(err)
         }
@@ -34,7 +45,8 @@ passport.use(new LocalStrategy((username,password,done)=>{
             done(null,false)
         }
         if(res.length===1){
-            if(passowrdFuncs.compare(password,res[0].password)){
+            console.log('userFpund')
+            if(password===res[0].password){
                 done(null,res[0])
             }
             else{
@@ -43,8 +55,14 @@ passport.use(new LocalStrategy((username,password,done)=>{
         }
     })
 }))
-app.use('/',)
-app.listen(3003,()=>{
+app.post('/login',passport.authenticate('local'),(req,res,next)=>{
+  res.send({success:true,role:req.user.isAdmin})
+})
+app.get('/getSeat',(req,res,next)=>{
+    con.query('SELECT ')
+})
+app.use('/setSeat',setSeat)
+app.listen(3003,async ()=>{
     console.log('Server up and running ')
     con.query('SELECT * FROM class LIMIT 1;',(err,res)=>{
         if(err){
@@ -56,4 +74,3 @@ app.listen(3003,()=>{
         }
     })
 })
-hacktherich
