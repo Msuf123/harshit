@@ -58,9 +58,7 @@ passport.use(new LocalStrategy((username,password,done)=>{
 app.post('/login',passport.authenticate('local'),(req,res,next)=>{
   res.send({success:true,role:req.user.isAdmin})
 })
-app.get('/getSeat',(req,res,next)=>{
-    con.query('SELECT ')
-})
+
 app.use('/setSeat',setSeat)
 app.listen(3003,async ()=>{
     console.log('Server up and running ')

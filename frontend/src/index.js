@@ -8,12 +8,18 @@ import { Provider } from 'react-redux';
 import url from './Routes/Login/urlSlice';
 import ClassRoomNumber from './Routes/SetSeat/ClassRoomNumber/classRoomNumberSlice';
 import rowsSlice from './Routes/SetSeat/ClassRoomRows/rowsSlice';
+import ParticularSeatSlice from './Routes/SetSeat/ClassRoomRows/ParticularSeat/ParticularSeatSlice';
+import FirstColumnOfEachRow from './Routes/SetSeat/ClassRoomRows/ParticularSeat/InputSearch/FirstColumnOfEachRow';
+import IndexOfRoom from './Routes/SetSeat/ClassRoomNumber/IndexOfRoom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store=configureStore({reducer:
   {url:url,
+  currentRoomIndex:IndexOfRoom,
   roomNumber:ClassRoomNumber,
-  rows:rowsSlice
+  rows:rowsSlice,
+  particularSeat:ParticularSeatSlice,
+  firstColorOfEachRow:FirstColumnOfEachRow
   }
 
 

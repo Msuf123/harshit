@@ -1,0 +1,10 @@
+.main{
+    position: absolute;
+    top:0px;
+    width: max-content;
+    left:190px;
+    font-weight: 700;
+}
+.outer{
+    position: relative;
+}
