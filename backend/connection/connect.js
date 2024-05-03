@@ -1,8 +1,8 @@
 const mysql2=require('mysql2')
 const con=mysql2.createPool({
-    host:'localhost',
-    password:'admin@123',
-    user:'admin',
+    host:'',
+    password:'',
+    user:'',
     connectionLimit:10,
     connectTimeout:100,
     waitForConnections:true,
